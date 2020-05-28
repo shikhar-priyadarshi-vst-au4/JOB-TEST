@@ -4,10 +4,12 @@ import "bulma/css/bulma.css";
 import Input from "./components/Input";
 import { List } from "./components/List";
 import { getemployee } from "./Redux/employee/employee.actions";
+import { getsurvey } from "./Redux/survey/survey.actions";
 // import {getsurvey} from './Redux/survey/survey.actions';
 function App(props) {
   useEffect(() => {
     props.dispatch(getemployee());
+    props.dispatch(getsurvey());
   }, []);
   return (
     <div className="container">
