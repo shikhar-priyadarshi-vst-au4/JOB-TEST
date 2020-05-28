@@ -1,0 +1,5 @@
+export const survey = {
+  GET_SURVEY_DATA: "GET_SURVEY_DATA",
+  SEARCH_SURVEY: "SEARCH_SURVEY",
+  SURVEY_ERROR: "SURVEY_ERROR",
+};

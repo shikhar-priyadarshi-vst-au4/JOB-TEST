@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import "bulma/css/bulma.css";
+import Input from "./components/Input";
+import { getemployee } from "./Redux/employee/employee.actions";
+// import {getsurvey} from './Redux/survey/survey.actions';
+function App(props) {
+  useEffect(() => {
+    props.dispatch(getemployee());
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <div className="level">
+        <div className="level-item subtitle is-4">Select Employee</div>
+      </div>
+      <div className="level">
+        <div className="level-item">
+          <Input comp="dropdown" />
+        </div>
+      </div>
     </div>
   );
 }
 
-export default App;
+export default connect()(App);
