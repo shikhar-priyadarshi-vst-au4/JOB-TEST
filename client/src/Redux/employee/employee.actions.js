@@ -27,10 +27,14 @@ export const getemployee = () => {
 };
 
 export const selectemployee = (value) => {
-  if (!!employee && employee !== "Select from option") {
+  if (!!value && value !== "Select from option") {
     return {
       type: employee.SELECT_EMPLOYEE,
       payload: value,
+    };
+  } else {
+    return {
+      type: employee.EMPLOYEE_UNSELECT,
     };
   }
 };

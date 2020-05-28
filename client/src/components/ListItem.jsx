@@ -6,7 +6,7 @@ const ListItem = (props) => {
     <Fragment>
       {props.comp === "dropdown" && (
         <Fragment>
-          <option>{props.selected}</option>
+          <option>Select from option</option>
           {props.employeedata?.map((value, index) => (
             <option key={index}>{value.name}</option>
           ))}
