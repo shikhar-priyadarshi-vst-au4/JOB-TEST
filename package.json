@@ -1,0 +1,26 @@
+{
+  "name": "jobtest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client": "cd client && npm i && npm start",
+    "server": "cd server && npm i && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shikhar-priyadarshi-vst-au4/JOB-TEST.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shikhar-priyadarshi-vst-au4/JOB-TEST/issues"
+  },
+  "homepage": "https://github.com/shikhar-priyadarshi-vst-au4/JOB-TEST#readme",
+  "devDependencies": {
+    "concurrently": "^5.2.0"
+  }
+}
