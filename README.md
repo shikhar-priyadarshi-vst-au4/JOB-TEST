@@ -2,12 +2,12 @@ Here's job test solution
 
 FIRST INSTALL EVERYTHING USING FOLLOWING COMMAND -
 
-npm i 
+1) npm install 
 
-npm run clientinstall
+2) npm run clientinstall
 
-npm run serverinstall
+3) npm run serverinstall
 
 EXECUTE THE PROJECT -
 
-npm run dev
+1) npm run dev
