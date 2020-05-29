@@ -19,12 +19,44 @@ const ListItem = (props) => {
         </Fragment>
       )}
 
-      {props.comp === "panel" && (
+      {props.comp === "panel-for-Survey List" && (
         <Fragment>
-          {props.surveydata?.map((value, index) => (
-            <div className="panel-block columns" style={styled.panel}>
-              <p className={"column is-four-fifth"}>{value.name}</p>
-              <div className={"column is-one-fifth"}>
+          {(!!props.filtersurvey.length && props.surveylist === "Survey List"
+            ? props.filtersurvey
+            : props.surveydata
+          ).map((value) => (
+            <div
+              className="panel-block columns"
+              style={styled.panel}
+              key={value.name}
+            >
+              <p className={"column is-four-fifth is-four-fifth-mobile"}>
+                {value.name}
+              </p>
+              <div className={"column is-one-fifth is-one-fifth-mobile"}>
+                <Button comp="panel-add-button">Add</Button>
+              </div>
+            </div>
+          ))}
+        </Fragment>
+      )}
+
+      {props.comp === "panel-for-Assigned Surveys" && (
+        <Fragment>
+          {(!!props.filtersurvey.length &&
+          props.surveylist === "Assigned Surveys"
+            ? props.filtersurvey
+            : props.addedsurvey
+          ).map((value, index) => (
+            <div
+              className="panel-block columns"
+              style={styled.panel}
+              key={value.name}
+            >
+              <p className={"column is-four-fifth is-four-fifth-mobile"}>
+                {value.name}
+              </p>
+              <div className={"column is-one-fifth is-one-fifth-mobile"}>
                 <Button comp="panel-add-button">Add</Button>
               </div>
             </div>
@@ -38,12 +70,15 @@ const ListItem = (props) => {
 const mapStateToProps = (state) => {
   let {
     employee: { employeedata, selected },
-    survey: { surveydata },
+    survey: { surveydata, addedsurvey, filtersurvey, surveylist },
   } = state;
   return {
     employeedata,
     selected,
     surveydata,
+    addedsurvey,
+    filtersurvey,
+    surveylist,
   };
 };
 

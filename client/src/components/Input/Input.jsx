@@ -1,7 +1,8 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { List } from "../List/List";
 import { connect } from "react-redux";
 import { selectemployee } from "../../Redux/employee/employee.actions";
+import { searchsurvery } from "../../Redux/survey/survey.actions";
 
 const styled = {
   input: {
@@ -10,6 +11,15 @@ const styled = {
 };
 
 const Input = (props) => {
+  let [data, setData] = useState({ name: "", value: "" });
+
+  const changeHandler = (e) => {
+    let { name, value } = e.target;
+    setData({ ...data, name, value });
+  };
+  const clickhandler = () => {
+    props.dispatch(searchsurvery(data));
+  };
   return (
     <Fragment>
       {props.comp === "dropdown" && (
@@ -28,8 +38,18 @@ const Input = (props) => {
       {props.comp === "panel" && (
         <div className="panel-block">
           <div className={"control has-icons-right"} style={styled.input}>
-            <input type={"text"} className={"input"} placeholder={"Search"} />
-            <span className={"icon is-small is-right"}>
+            <input
+              type={"text"}
+              className={"input"}
+              placeholder={"Search"}
+              name={`${props.name}`}
+              onChange={(e) => changeHandler(e)}
+            />
+            <span
+              className={"icon is-small is-right"}
+              style={{ pointerEvents: "initial", cursor: "pointer" }}
+              onClick={() => clickhandler()}
+            >
               <i className="fas fa-search"></i>
             </span>
           </div>

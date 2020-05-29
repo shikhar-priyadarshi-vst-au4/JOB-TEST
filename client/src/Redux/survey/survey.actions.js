@@ -26,3 +26,10 @@ export const getsurvey = () => {
     }
   };
 };
+export const searchsurvery = (data) => {
+  return {
+    type: survey.SEARCH_SURVEY,
+    payload: data,
+  };
+};
+export const addsurvey = (data) => {};

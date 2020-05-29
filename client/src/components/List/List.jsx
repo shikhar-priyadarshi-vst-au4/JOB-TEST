@@ -18,8 +18,8 @@ export const List = (props) => {
               <div className={`column`} key={index}>
                 <p className={"is-size-4 has-text-centered"}>{value}</p>
                 <div className="panel" style={styled.panelContainer}>
-                  <Input comp={"panel"} />
-                  <ListItem comp={"panel"} />
+                  <Input comp={"panel"} name={`${value}`} />
+                  <ListItem comp={`panel-for-${value}`} />
                 </div>
               </div>
             ))}

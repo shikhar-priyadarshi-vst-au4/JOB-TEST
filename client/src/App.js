@@ -5,7 +5,7 @@ import Input from "./components/Input";
 import { List } from "./components/List";
 import { getemployee } from "./Redux/employee/employee.actions";
 import { getsurvey } from "./Redux/survey/survey.actions";
-// import {getsurvey} from './Redux/survey/survey.actions';
+import { Button } from "./components/Button";
 function App(props) {
   useEffect(() => {
     props.dispatch(getemployee());
@@ -22,6 +22,11 @@ function App(props) {
         </div>
       </div>
       <List comp="panel" />
+      <div className="level">
+        <div className="level-item">
+          <Button comp="submit-button">Done</Button>
+        </div>
+      </div>
     </div>
   );
 }
