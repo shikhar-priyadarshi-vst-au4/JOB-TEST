@@ -1,9 +1,10 @@
 import { survey } from "./survey.types";
-import { getFilter } from "./survey.utils";
+import { getFilter, add, remove } from "./survey.utils";
 const initState = {
   surveydata: [],
   addedsurvey: [],
-  filtersurvey: [],
+  filtersurveydata: [],
+  filteraddedsurvey: [],
   surveylist: "",
 };
 
@@ -14,10 +15,30 @@ export const surveyReducer = (state = initState, { type, payload }) => {
     case survey.SEARCH_SURVEY:
       return {
         ...state,
-        filtersurvey: getFilter(state, payload),
+        [payload.name === "Survey List"
+          ? "filtersurveydata"
+          : "filteraddedsurvey"]: getFilter(state, payload),
         surveylist: payload.name,
+      };
+    case survey.ADD_SURVEY:
+      return {
+        ...state,
+        surveydata: remove(state.surveydata, payload),
+        addedsurvey: add(payload, state.surveydata, state.addedsurvey),
+        surveylist: "",
+      };
+    case survey.REMOVE_SURVEY:
+      return {
+        ...state,
+        surveydata: add(payload, state.addedsurvey, state.surveydata),
+        addedsurvey: remove(state.addedsurvey, payload),
+        surveylist: "",
       };
     default:
       return state;
   }
 };
+
+// [payload.name === "Survey List"
+//   ? "filtersurveydata"
+//   : "filteraddedsurvey"]: getFilter(state, payload),

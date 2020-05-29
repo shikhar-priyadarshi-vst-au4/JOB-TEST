@@ -27,4 +27,15 @@ router.get("/employee-data", (req, res) => {
     });
   }
 });
+
+router.post("/response-submit", (req, res) => {
+  let { employee, surveyAssigned } = req.body;
+  console.log("Employee name -->", employee);
+  console.log("Survey Assigned", surveyAssigned);
+  res.json({
+    status: true,
+    message: `${employee} was assigned ${surveyAssigned.length} survey`,
+  });
+});
+
 module.exports = router;

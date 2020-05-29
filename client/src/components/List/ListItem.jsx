@@ -1,13 +1,27 @@
 import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import { Button } from "../Button";
+import { addsurvey, removesurvey } from "../../Redux/survey/survey.actions";
 
 const styled = {
   panel: {
     margin: "0 1em",
   },
 };
-const ListItem = (props) => {
+const ListItem = ({
+  surveydata,
+  addedsurvey,
+  filtersurveydata,
+  filteraddedsurvey,
+  surveylist,
+  ...props
+}) => {
+  const appendsurvey = (value) => {
+    props.dispatch(addsurvey(value));
+  };
+  const deletesurvey = (value) => {
+    props.dispatch(removesurvey(value));
+  };
   return (
     <Fragment>
       {props.comp === "dropdown" && (
@@ -21,9 +35,9 @@ const ListItem = (props) => {
 
       {props.comp === "panel-for-Survey List" && (
         <Fragment>
-          {(!!props.filtersurvey.length && props.surveylist === "Survey List"
-            ? props.filtersurvey
-            : props.surveydata
+          {(!!filtersurveydata.length && surveylist === "Survey List"
+            ? filtersurveydata
+            : surveydata
           ).map((value) => (
             <div
               className="panel-block columns"
@@ -34,7 +48,12 @@ const ListItem = (props) => {
                 {value.name}
               </p>
               <div className={"column is-one-fifth is-one-fifth-mobile"}>
-                <Button comp="panel-add-button">Add</Button>
+                <Button
+                  comp="panel-add-button"
+                  appendsurvey={() => appendsurvey(value)}
+                >
+                  Add
+                </Button>
               </div>
             </div>
           ))}
@@ -43,10 +62,9 @@ const ListItem = (props) => {
 
       {props.comp === "panel-for-Assigned Surveys" && (
         <Fragment>
-          {(!!props.filtersurvey.length &&
-          props.surveylist === "Assigned Surveys"
-            ? props.filtersurvey
-            : props.addedsurvey
+          {(!!filteraddedsurvey.length && surveylist === "Assigned Surveys"
+            ? filteraddedsurvey
+            : addedsurvey
           ).map((value, index) => (
             <div
               className="panel-block columns"
@@ -57,7 +75,12 @@ const ListItem = (props) => {
                 {value.name}
               </p>
               <div className={"column is-one-fifth is-one-fifth-mobile"}>
-                <Button comp="panel-add-button">Add</Button>
+                <Button
+                  comp="panel-remove-button"
+                  deletesurvey={() => deletesurvey(value)}
+                >
+                  Remove
+                </Button>
               </div>
             </div>
           ))}
@@ -70,14 +93,21 @@ const ListItem = (props) => {
 const mapStateToProps = (state) => {
   let {
     employee: { employeedata, selected },
-    survey: { surveydata, addedsurvey, filtersurvey, surveylist },
+    survey: {
+      surveydata,
+      addedsurvey,
+      filtersurveydata,
+      filteraddedsurvey,
+      surveylist,
+    },
   } = state;
   return {
     employeedata,
     selected,
     surveydata,
     addedsurvey,
-    filtersurvey,
+    filtersurveydata,
+    filteraddedsurvey,
     surveylist,
   };
 };

@@ -17,7 +17,7 @@ const Input = (props) => {
     let { name, value } = e.target;
     setData({ ...data, name, value });
   };
-  const clickhandler = () => {
+  const clickHandler = () => {
     props.dispatch(searchsurvery(data));
   };
   return (
@@ -35,6 +35,7 @@ const Input = (props) => {
           </div>
         </div>
       )}
+
       {props.comp === "panel" && (
         <div className="panel-block">
           <div className={"control has-icons-right"} style={styled.input}>
@@ -48,7 +49,7 @@ const Input = (props) => {
             <span
               className={"icon is-small is-right"}
               style={{ pointerEvents: "initial", cursor: "pointer" }}
-              onClick={() => clickhandler()}
+              onClick={() => clickHandler()}
             >
               <i className="fas fa-search"></i>
             </span>

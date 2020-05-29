@@ -32,4 +32,15 @@ export const searchsurvery = (data) => {
     payload: data,
   };
 };
-export const addsurvey = (data) => {};
+export const addsurvey = (data) => {
+  return {
+    type: survey.ADD_SURVEY,
+    payload: data,
+  };
+};
+export const removesurvey = (data) => {
+  return {
+    type: survey.REMOVE_SURVEY,
+    payload: data,
+  };
+};

@@ -5,3 +5,13 @@ export const getFilter = ({ surveydata, addedsurvey }, { name, value }) => {
   data = data.filter((val) => val.name.slice(0, len) === value);
   return data;
 };
+
+/* @params add(item, from, into)*/
+export const add = (item, from, into) => {
+  return [...into, from.find((val) => val.name === item.name)];
+};
+
+/* @params remove(newData, remove)*/
+export const remove = (newData, remove) => {
+  return [...newData.filter((val) => val.name !== remove.name)];
+};
